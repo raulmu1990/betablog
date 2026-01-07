@@ -1,5 +1,7 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
 import Logo from '@assets/metablog.svg';
 import Link from '@components/Link.astro';
 import SearchInput from '@components/SearchInput.astro';
@@ -7,14 +9,71 @@ import DarkButtonToggle from '@components/DarkButtonToggle.astro';
 ---
 
 <header class="fixed z-10 top-0 left-0 w-full px-4 py-5 md:px-8 md:py-6 lg:px-12 lg:py-6 bg-light-background/90 dark:bg-background-dark/90 backdrop-blur-sm">
-    <nav class="max-w-12xl mx-auto flex justify-between items-center">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center">
         <a href="/" class="block">
             <Image src={Logo} alt="Metablog" width="158" height="36" class="fill-body dark:fill-body-dark" />
         </a>
-        <div class="hidden lg:block space-x-3">
-            <Link href="/">Home</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/contact">Contact</Link>
+        <div class="hidden lg:block space-x-3 relative">
+            <button popovertarget="categories-list" class="inline-flex items-center gap-1 text-body dark:text-body-dark font-medium px-4 py-2 rounded hover:bg-primary/10 hover:text-primary transition-colors duration-100">
+                Categories
+                <span class="w-fit mt-0.5">
+                    <Icon name="chevron" class="size-4 text-body dark:text-body-dark" />
+                </span>
+            </button>
+            <Link href="/blog">All posts</Link>
+            <Link href="/contact">About</Link>
+
+            <el-popover id="categories-list" anchor="bottom end" popover class="w-screen max-w-max overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
+                <div class="w-screen max-w-md flex-auto overflow-hidden rounded-2xl bg-light-background dark:bg-background-dark text-sm/6 outline-1 -outline-offset-1 outline-secondary-100 dark:outline-secondary-100-dark">
+                    <div class="p-4">
+                        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-primary/10">
+                            <div>
+                                <a href="#" class="font-semibold text-body dark:text-body-dark">
+                                    Analytics
+                                    <span class="absolute inset-0"></span>
+                                </a>
+                                <p class="mt-1 text-body/75 dark:text-body-dark/50">Get a better understanding of your traffic</p>
+                            </div>
+                        </div>
+                        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-primary/10">
+                            <div>
+                                <a href="#" class="font-semibold text-body dark:text-body-dark">
+                                Engagement
+                                <span class="absolute inset-0"></span>
+                                </a>
+                                <p class="mt-1 text-body/75 dark:text-body-dark/50">Speak directly to your customers</p>
+                            </div>
+                        </div>
+                        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-primary/10">
+                            <div>
+                                <a href="#" class="font-semibold text-body dark:text-body-dark">
+                                Security
+                                <span class="absolute inset-0"></span>
+                                </a>
+                                <p class="mt-1 text-body/75 dark:text-body-dark/50">Your customers&#039; data will be safe and secure</p>
+                            </div>
+                        </div>
+                        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-primary/10">
+                            <div>
+                                <a href="#" class="font-semibold text-body dark:text-body-dark">
+                                Integrations
+                                <span class="absolute inset-0"></span>
+                                </a>
+                                <p class="mt-1 text-body/75 dark:text-body-dark/50">Connect with third-party tools</p>
+                            </div>
+                        </div>
+                        <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-primary/10">
+                            <div>
+                                <a href="#" class="font-semibold text-body dark:text-body-dark">
+                                Automations
+                                <span class="absolute inset-0"></span>
+                                </a>
+                                <p class="mt-1 text-body/75 dark:text-body-dark/50">Build strategic funnels that will convert</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </el-popover>
         </div>
         <div class="flex items-center gap-3 lg:flex-row">
             <SearchInput />
