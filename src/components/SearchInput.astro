@@ -1,0 +1,19 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<form role="search">
+    <label class="w-fit md:w-[180px] bg-secondary-100 dark:bg-secondary-100-dark pl-2 md:pl-4 pr-2 py-2 rounded">
+        <input 
+            id="search-input" 
+            type="search" 
+            placeholder="Search..." 
+            aria-label="Search posts" 
+            class="hidden md:inline-block text-sm text-body dark:text-body-dark focus:border-none outline-none"
+        />
+        <Icon 
+            name="magnifying-glass" 
+            class="stroke-body size-4 inline-block mt-[-4px]" 
+        />
+    </label>
+</form>

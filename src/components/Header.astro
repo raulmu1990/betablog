@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '@assets/metablog.svg';
+import Link from '@components/Link.astro';
+import SearchInput from '@components/SearchInput.astro';
+import DarkButtonToggle from '@components/DarkButtonToggle.astro';
+---
+
+<header class="fixed z-10 top-0 left-0 w-full px-4 py-5 md:px-8 md:py-6 lg:px-12 lg:py-6 bg-light-background/90 dark:bg-background-dark/90 backdrop-blur-sm">
+    <nav class="max-w-12xl mx-auto flex justify-between items-center">
+        <a href="/" class="block">
+            <Image src={Logo} alt="Metablog" width="158" height="36" class="fill-body dark:fill-body-dark" />
+        </a>
+        <div class="hidden lg:block space-x-3">
+            <Link href="/">Home</Link>
+            <Link href="/blog">Blog</Link>
+            <Link href="/contact">Contact</Link>
+        </div>
+        <div class="flex items-center gap-3 lg:flex-row">
+            <SearchInput />
+            <DarkButtonToggle />
+        </div>
+    </nav>
+</header>

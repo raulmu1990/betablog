@@ -1,0 +1,26 @@
+---
+import PostCard from '@components/PostCard.astro';
+
+import thumbnail from '@assets/thumbnail.jpg';
+import avatar from '@assets/profile.png';
+
+import posts from '../data/posts.json';
+---
+
+<section class="py-20 space-y-8">
+    <h2 class="text-2xl font-bold capitalize">Latest posts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+            posts.map((post) => (
+                <PostCard 
+                    imageSrc={thumbnail.src}
+                    avatar={avatar.src}
+                    title={post.title}
+                    category={post.category}
+                    dateOfPublish={post.dateOfPublish}
+                    author={post.author}
+                />
+            ))
+        }
+    </div>
+</section>

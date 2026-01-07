@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<footer class="pt-16 px-4 md:px-6 lg:px-12 xl:px-0 space-y-16 bg-secondary dark:bg-secondary-dark border-t border-secondary-100 dark:border-secondary-100-dark">
+    <div class="grid grid-cols-1 lg:grid-cols-[3fr_5fr_4fr] gap-12 lg:gap-5">
+        <div class="space-y-6">
+            <p class="space-y-3 text-body/75 dark:text-body-dark/50">
+                <strong class="block font-semibold text-lg text-body dark:text-body-dark">About</strong>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna 
+                aliqua. Ut enim ad minim veniam
+            </p>
+            <ul class="space-y-1">
+                <li class="text-body dark:text-body-dark">
+                    <strong class="font-semibold">Email:</strong>
+                    <a class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline" href="mailto:raul@betablog.com">raul@betablog.com</a>
+                </li>
+                <li class="text-body dark:text-body-dark">
+                    <strong class="font-semibold">Phone:</strong>
+                    <a class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline" href="tel:+8801234567890">+880 123 456 789</a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex gap-16 justify-start lg:justify-center">
+            <nav class="space-y-4">
+                <p class="font-semibold text-lg">Quick Links</p>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Home</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">About</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Contact</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Services</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Blog</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="space-y-4">
+                <p class="font-semibold text-lg">Categories</p>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Lifestyle</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Travel</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Food</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Health</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Fashion</a></li>
+                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Technology</a></li>
+                </ul>
+            </nav>
+        </div>
+        <form class="p-8 bg-white dark:bg-secondary-100-dark rounded-xl flex flex-col gap-8" action="/" method="post">
+            <p class="text-center text-body/50 dark:text-body-dark/50">
+                <strong class="font-semibold text-xl text-body dark:text-body-dark">Weekly Newsletter</strong><br>
+                Get blog articles and offers via email
+            </p>
+            <label class="px-4 py-3 rounded-md flex items-center border border-secondary-100 dark:border-body-dark/50 has-focus:border-primary">
+                <input required class="flex-1 text-body dark:text-body-dark focus:border-none focus:outline-none" type="email" name="email" placeholder="Your email">
+                <span class="w-fit">
+                    <Icon name="envelope" class="size-5 text-body dark:text-body-dark" />
+                </span>
+            </label>
+            <button class="bg-primary hover:bg-primary-hover text-white font-semibold py-3 rounded-md cursor-pointer" type="submit">
+                Subscribe
+            </button>
+        </form>
+    </div>
+    <div class="py-8 flex flex-col gap-3 md:flex-row items-center justify-start sm:justify-between border-t-2 border-secondary-100 dark:border-secondary-100-dark">
+        <div class="space-y-1">
+            <strong class="block text-center sm:text-start font-normal text-body dark:text-body-dark text-xl">
+                Beta<span class="font-bold">BLog</span>
+            </strong>
+            <p class="text-body/75 dark:text-body-dark/50">Copyright © BetaBlog {new Date().getFullYear()}. All rights reserved.</p>
+        </div>
+        <ul class="flex gap-4">
+            <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Terms of use</a></li>
+            <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Privacy policy</a></li>
+        </ul>
+    </div>
+</footer>

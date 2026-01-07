@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+import profile from '@assets/profile.png';
+---
+
+<article class="bg-white dark:bg-background-dark dark:border dark:border-secondary-100-dark relative z-1 rounded-2xl p-6 md:p-10 w-[90%] md:w-[65%] xl:w-[50%] mt-[-50%] sm:mt-[-20%] ml-4 shadow-xl dark:shadow-none space-y-6">
+    <header class="space-y-4">
+        <div class="bg-primary rounded p-2 text-sm text-white font-medium w-fit" >Technology</div>
+        <h1 class="capitalize text-body dark:text-body-dark font-semibold text-2xl leading-tight md:text-3xl lg:text-4xl xl:text-5xl">
+            The Impact of Technology on the Workplace: How Technology is Changing
+        </h1>
+    </header>
+
+    <footer class="flex gap-5 items-center">
+        <div class="flex items-center gap-2">
+            <Image class="rounded-full" src={profile} loading="eager" alt="Author profile" width={40} height={40} />
+            <p class="capitalize font-medium text-body/75 dark:text-body-dark/50">Jason francisco</p>
+        </div>
+        <div class="hidden sm:block text-primary">|</div>
+        <div class="flex gap-2 items-center">
+            <span class="w-fit">
+                <Icon name="calendar" class="size-4 text-body/75 dark:text-body-dark/50" />
+            </span>
+            <time datetime="2023-10-12" class="text-body/75 dark:text-body-dark/50 font-semibold">
+                October 12, 2023
+            </time>
+        </div>
+    </footer>
+</article>

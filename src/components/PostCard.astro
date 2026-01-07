@@ -1,0 +1,42 @@
+---
+interface Props {
+    imageSrc: string;
+    avatar: string;
+    title: string;
+    category: string;
+    dateOfPublish: string;
+    author: string;
+}
+
+const { 
+    imageSrc,
+    avatar, 
+    title, 
+    category, 
+    dateOfPublish, 
+    author
+} = Astro.props;
+---
+
+<article class="p-4 space-y-4 rounded-xl border border-secondary-100 dark:border-secondary-100-dark">
+    <div>
+        <img src={imageSrc} alt={title} class="rounded-md w-full aspect-3/2 object-cover" />
+    </div>
+    <header class="space-y-3">
+        <span class="inline-block text-sm font-medium text-primary px-2 py-1 rounded-md bg-primary/5">
+            {category}
+        </span>
+        <h3 title={title} class="text-lg font-semibold capitalize line-clamp-2">
+            {title}
+        </h3>
+    </header>
+    <footer class="flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <img src={avatar} alt="Author avatar" class="w-9 h-9 rounded-full">
+            <p class="font-medium capitalize text-body/50 dark:text-body-dark/50">{author}</p>
+        </div>
+        <time class="text-body/50 dark:text-body-dark/50">
+            {dateOfPublish}
+        </time>
+    </footer>
+</article>

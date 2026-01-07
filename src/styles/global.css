@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #4b6bfb;
+    --color-primary-hover: #3a4cf1;
+    --color-secondary: #f6f6f7;
+    --color-secondary-100: #e8e8ea;
+    --color-body: #3b3c4a;
+    --color-light-background: #ffffff;
+
+    --color-secondary-dark: #141624;
+    --color-secondary-100-dark: #242535;
+    --color-body-dark: #fafafa;
+    --color-background-dark: #181a2a;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hover (&:hover);
