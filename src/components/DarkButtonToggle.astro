@@ -10,7 +10,6 @@ import { Icon } from 'astro-icon/components';
         />
     </span>
     <input 
-        onchange="document.documentElement.classList.toggle('dark')" 
         class="hidden" 
         type="checkbox" 
         id="dark-mode-toggle" 
@@ -18,3 +17,27 @@ import { Icon } from 'astro-icon/components';
         aria-label="Toggle dark mode" 
     />
 </label>
+
+<script>
+    const darkModeToggle = document.getElementById('dark-mode-toggle') as HTMLInputElement;
+    
+    darkModeToggle.addEventListener('change', (event) => {
+        const { checked: darkModeEnabled } = event.target as HTMLInputElement;
+        
+        if (darkModeEnabled) {
+            localStorage.setItem('dark-mode', 'enabled');
+            document.documentElement.classList.add('dark');
+        } else {
+            localStorage.setItem('dark-mode', 'disabled');
+            document.documentElement.classList.remove('dark');
+        }
+    });
+
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        darkModeToggle.checked = true;
+        document.documentElement.classList.add('dark');
+    } else {
+        darkModeToggle.checked = false;
+        document.documentElement.classList.remove('dark');
+    }
+</script>
