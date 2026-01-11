@@ -2,12 +2,13 @@
 import { Icon } from 'astro-icon/components';
 import featuredPostImg from '@assets/feature-post-img.jpg';
 import profile from '@assets/profile.png';
+import Badge from '@components/Badge.astro';
 ---
 
-<a href="#" class="relative w-full h-[50vh] lg:h-[65vh] min-h-max p-6 lg:p-10 rounded-2xl overflow-hidden flex flex-col justify-end gap-6 hover:[&>img]:scale-110 hover:[&>img]:brightness-30">
-    <img class="absolute -z-1 inset-0 w-full h-full object-cover brightness-50 transition-all duration-300" src={featuredPostImg.src} alt="Featured Image">
+<a href="/posts/the-impact-of-technology-in-the-workplace" class="relative w-full h-[50vh] lg:h-[65vh] min-h-max p-6 lg:p-10 rounded-2xl overflow-hidden flex flex-col justify-end gap-6 hover:[&>img]:scale-105 hover:[&>img]:brightness-30">
+    <img transition:name="featured-post-img" class="absolute -z-1 inset-0 w-full h-full object-cover brightness-50 transition-all duration-300" src={featuredPostImg.src} alt="Featured Image">
     <div class="space-y-4">
-        <div class="bg-primary rounded p-2 text-sm text-white font-medium w-fit">Technology</div>
+        <Badge>Technology</Badge>
         <h2 class="w-full lg:w-[75%] capitalize text-body-dark font-semibold text-2xl leading-tight md:text-3xl lg:text-4xl xl:text-5xl">
             The Impact of Technology on the Workplace: How Technology is Changing
         </h2>

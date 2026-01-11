@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Badge from '@components/Badge.astro';
+import { Icon } from 'astro-icon/components';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('posts');
+
+    return posts.map((post: any) => ({
+        params: { id: post.slug },
+        props: { post }
+    }))
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { title, category, author, publishDate, image, authorAvatar } = data;
+const { Content } = await render(post);
+---
+
+<Layout title="Post">
+    <section class="w-full max-w-4xl mx-auto px-4 md:px-6 space-y-8">
+        <header class="space-y-4">
+            <Badge>{category}</Badge>
+            <h1 class="text-4xl font-bold capitalize leading-tight text-body dark:text-body-dark">{title}</h1>
+            <div class="flex gap-5 items-center">
+                <div class="flex items-center gap-2">
+                    <img class="rounded-full" src={`/${authorAvatar}`} loading="eager" alt="Author profile" width={40} height={40} />
+                    <p class="capitalize font-medium text-body-dark/50">{author}</p>
+                </div>
+                <div class="w-[2px] h-6 relative after:content-[''] after:absolute after:w-full after:h-full after:top-0 after:left-0 after:bg-body/75 dark:after:bg-body-dark/50"></div>
+                <div class="flex gap-2 items-center">
+                    <span class="w-fit">
+                        <Icon name="calendar" class="size-4 text-body-dark/75" />
+                    </span>
+                    <time datetime="2023-10-12" class="text-body-dark/75 font-medium">
+                        {publishDate}
+                    </time>
+                </div>
+            </div>
+        </header>
+        <div>
+            <img transition:name="featured-post-img" class="w-full h-[50vh] rounded-2xl object-cover" src={`/${image}`} alt={title} loading="eager" >
+        </div>
+        <div>
+            <Content />
+        </div>
+    </section>
+</Layout>
