@@ -20,7 +20,7 @@ const { Content } = await render(post);
 ---
 
 <Layout title="Post">
-    <section class="w-full max-w-4xl mx-auto px-4 md:px-6 space-y-8">
+    <section class="w-full max-w-4xl mx-auto px-4 md:px-6 space-y-8 my-12">
         <header class="space-y-4">
             <Badge>{category}</Badge>
             <h1 class="text-4xl font-bold capitalize leading-tight text-body dark:text-body-dark">{title}</h1>
@@ -43,7 +43,7 @@ const { Content } = await render(post);
         <div>
             <img transition:name="featured-post-img" class="w-full h-[50vh] rounded-2xl object-cover" src={`/${image}`} alt={title} loading="eager" >
         </div>
-        <div>
+        <div class="prose prose-lg dark:prose-invert">
             <Content />
         </div>
     </section>
