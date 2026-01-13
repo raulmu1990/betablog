@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
 
 import Logo from '@assets/metablog.svg';
 import Link from '@components/Link.astro';
 import SearchInput from '@components/SearchInput.astro';
 import DarkButtonToggle from '@components/DarkButtonToggle.astro';
+import DropdownButton from '@components/DropdownButton.astro';
 ---
 
 <header class="fixed z-10 top-0 left-0 w-full px-4 py-5 md:px-8 md:py-6 lg:px-12 lg:py-6 bg-light-background/90 dark:bg-background-dark/90 backdrop-blur-sm">
@@ -14,26 +14,9 @@ import DarkButtonToggle from '@components/DarkButtonToggle.astro';
             <Image src={Logo} alt="Metablog" width="158" height="36" class="fill-body dark:fill-body-dark" />
         </a>
         <div class="hidden lg:block space-x-3">
-            <button popovertarget="categories-list" class="inline-flex items-center gap-1 text-body dark:text-body-dark font-medium px-4 py-2 rounded hover:bg-primary/10 hover:text-primary transition-colors duration-100">
-                Categories
-                <span class="w-fit mt-0.5">
-                    <Icon name="chevron" class="size-4 text-body dark:text-body-dark" />
-                </span>
-            </button>
+            <DropdownButton>Categories</DropdownButton>
             <Link href="/posts">All posts</Link>
             <Link href="/about">About</Link>
-
-            <el-popover id="categories-list" popover="auto" class="w-full max-w-max fixed top-20 left-[50%] -translate-x-full overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
-                <div class="flex-auto w-full max-w-md overflow-hidden rounded-2xl bg-light-background dark:bg-background-dark text-sm/6 outline-1 -outline-offset-1 outline-secondary-100 dark:outline-secondary-100-dark">
-                    <div class="p-4 grid grid-cols-2 gap-2">
-                        <Link href="/categories/lifestyle">Lifestyle</Link>
-                        <Link href="/categories/technology">Technology</Link>
-                        <Link href="/categories/travel">Travel</Link>
-                        <Link href="/categories/food">Food</Link>
-                        <Link href="/categories/health">Health</Link>
-                    </div>
-                </div>
-            </el-popover>
         </div>
         <div class="flex items-center gap-3 lg:flex-row">
             <SearchInput />
