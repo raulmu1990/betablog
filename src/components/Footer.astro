@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 
 <footer class="w-full pt-16 px-4 md:px-6 lg:px-12 xl:px-0 space-y-16 bg-secondary dark:bg-secondary-dark border-t border-secondary-100 dark:border-secondary-100-dark">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[3fr_5fr_4fr] gap-12 lg:gap-5">
-        <div class="space-y-6">
+        <div class="order-last lg:order-first space-y-6">
             <p class="space-y-3 text-body/75 dark:text-body-dark/50">
                 <strong class="block font-semibold text-lg text-body dark:text-body-dark">About</strong>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -46,7 +46,7 @@ import { Icon } from 'astro-icon/components';
                 </ul>
             </nav>
         </div>
-        <form class="p-8 bg-white dark:bg-secondary-100-dark rounded-xl flex flex-col gap-8" action="/" method="post">
+        <form class="order-first lg:order-last p-8 bg-white dark:bg-secondary-100-dark rounded-xl flex flex-col gap-8" action="/" method="post">
             <p class="text-center text-body/50 dark:text-body-dark/50">
                 <strong class="font-semibold text-xl text-body dark:text-body-dark">Weekly Newsletter</strong><br>
                 Get blog articles and offers via email

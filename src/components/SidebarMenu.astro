@@ -1,0 +1,38 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import SearchInput from "./SearchInput.astro";
+import DarkButtonToggle from "./DarkButtonToggle.astro";
+import Link from './Link.astro';
+import DropdownButton from './DropdownButton.astro';
+---
+
+<div class="block lg:hidden">
+    <label class="peer inline-flex items-center p-3 rounded-full active:bg-primary/10 active:text-primary">
+        <span class="w-fit h-fit">
+            <Icon class="size-6" name="menu" />
+        </span>
+        <input hidden role="switch" type="checkbox" id="mobile-menu-button">
+    </label>
+    <div class="fixed top-0 right-0 z-10 p-4 overflow-y-auto overscroll-contain translate-x-full peer-has-checked:translate-x-0 w-full h-screen bg-light-background dark:bg-background-dark transition-transform duration-300 delay-200 ease-in-out">
+        <div class="space-y-6 h-full relative">
+            <button class="absolute right-4 bottom-4 inline-flex items-center gap-2 border border-body/75 dark:border-body-dark/75 rounded-full px-4 py-2" onclick="document.getElementById('mobile-menu-button').checked = false">
+                Close
+                <span class="h-fit">
+                    <Icon name="close" class="size-5" />
+                </span>
+            </button>
+            <div class="space-y-4">
+                <DarkButtonToggle />
+                <SearchInput />
+            </div>
+            <div class="space-y-4">
+                <hr class="border border-body/25 dark:border-body-dark/25" />
+                <DropdownButton>Categories</DropdownButton>
+                <hr class="border border-body/25 dark:border-body-dark/25" />
+                <Link href="/posts">All posts</Link>
+                <hr class="border border-body/25 dark:border-body-dark/25" />
+            </div>
+        </div>
+    </div>
+</div>

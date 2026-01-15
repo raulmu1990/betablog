@@ -2,37 +2,46 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<div class="w-fit h-fit">
-    <label for="dark-mode-toggle" title="Toggle dark mode" class="w-12 h-7 relative block cursor-pointer rounded-full bg-secondary-100 transition-colors duration-300 has-checked:bg-primary has-checked:[&>span]:translate-x-5">
-        <span class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-300">
-            <Icon 
-                name="light" 
-                class="size-4 fill-body dark:fill-body dark:text-body absolute inset-0 m-auto" 
+<dark-toggle>
+    <div class="w-fit h-fit">
+        <label title="Toggle dark mode" class="w-12 h-7 relative block cursor-pointer rounded-full bg-secondary-100 transition-colors duration-300 has-checked:bg-primary has-checked:[&>span]:translate-x-5">
+            <span class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-300">
+                <Icon 
+                    name="light" 
+                    class="size-4 fill-body dark:fill-body dark:text-body absolute inset-0 m-auto" 
+                />
+            </span>
+            <input   
+                class="hidden"
+                type="checkbox" 
+                role="switch" 
+                aria-label="Toggle dark mode" 
             />
-        </span>
-        <input 
-            class="hidden" 
-            type="checkbox" 
-            id="dark-mode-toggle" 
-            role="switch" 
-            aria-label="Toggle dark mode" 
-        />
-    </label>
-</div>
+        </label>
+    </div>
+</dark-toggle>
 
 <script>
     document.addEventListener('astro:page-load', function() {
 
-        const darkModeToggle = document.getElementById('dark-mode-toggle') as HTMLInputElement;
+        class DarkToggle extends HTMLElement {
 
-        if (localStorage.theme === 'dark') {
-            document.documentElement.classList.add('dark');
-            darkModeToggle.checked = true;
+            connectedCallback() {
+
+                const darkModeToggle = this.querySelector('input') as HTMLInputElement;
+        
+                if (localStorage.theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    darkModeToggle.checked = true;
+                }
+            
+                this.addEventListener('change', () => {
+                    document.documentElement.classList.toggle('dark');
+                    localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+                });
+            }
         }
-    
-        darkModeToggle.addEventListener('change', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        });
+
+        customElements.define('dark-toggle', DarkToggle);
     });
 </script>

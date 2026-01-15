@@ -5,25 +5,25 @@ import Logo from '@assets/metablog.svg';
 import Link from '@components/Link.astro';
 import SearchInput from '@components/SearchInput.astro';
 import DarkButtonToggle from '@components/DarkButtonToggle.astro';
-import DropdownButton from '@components/DropdownButton.astro';
-import DropdownMenu from '@components/DropdownMenu.astro';
+import SidebarMenu from '@components/SidebarMenu.astro';
+import PopoverButton from '@components/PopoverButton.astro';
 ---
 
-<header class="fixed z-10 top-0 left-0 w-full px-4 py-5 md:px-8 md:py-6 lg:px-12 lg:py-6 bg-light-background/90 dark:bg-background-dark/90 backdrop-blur-sm">
+<header class="fixed z-10 top-0 left-0 w-full px-4 py-2 sm:px-4 sm:py-5 md:px-8 md:py-6 lg:px-12 lg:py-6 bg-light-background/90 dark:bg-background-dark/90 backdrop-blur-sm">
     <nav class="max-w-7xl mx-auto flex justify-between items-center">
         <a href="/" class="block">
             <Image src={Logo} alt="Metablog" width="158" height="36" class="fill-body dark:fill-body-dark" />
         </a>
         <div class="hidden lg:block space-x-3">
-            <DropdownButton>Categories</DropdownButton>
+            <PopoverButton>Categories</PopoverButton>
             <Link href="/posts">All posts</Link>
             <Link href="/about">About</Link>
         </div>
-        <div class="hidden md:flex md:items-center md:gap-3">
+        <div class="hidden lg:flex lg:items-center lg:gap-3">
             <SearchInput />
             <DarkButtonToggle />
         </div>
 
-        <DropdownMenu />
+        <SidebarMenu />
     </nav>
 </header>
