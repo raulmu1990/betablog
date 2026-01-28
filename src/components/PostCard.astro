@@ -1,27 +1,31 @@
 ---
 interface Props {
+    id: string;
     imageSrc: string;
     avatar: string;
     title: string;
     category: string;
     dateOfPublish: string;
     author: string;
+    slug: string;
 }
 
-const { 
+const {
+    id, 
     imageSrc,
     avatar, 
     title, 
     category, 
     dateOfPublish, 
-    author
+    author,
+    slug
 } = Astro.props;
 ---
 
 <article class="p-4 space-y-4 rounded-xl border border-secondary-100 dark:border-secondary-100-dark">
-    <div>
-        <img src={imageSrc} alt={title} class="rounded-md w-full aspect-3/2 object-cover" />
-    </div>
+    <a href={`/posts/${slug}`} class="block w-full rounded-md overflow-hidden cursor-pointer">
+        <img transition:name={id} src={imageSrc} alt={title} class="rounded-md w-full aspect-3/2 object-cover hover:opacity-50 hover:scale-105 transition-all duration-300" />
+    </a>
     <header class="space-y-3">
         <span class="inline-block text-sm font-medium text-primary px-2 py-1 rounded-md bg-primary/5">
             {category}

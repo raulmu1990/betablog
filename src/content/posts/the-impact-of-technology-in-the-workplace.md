@@ -23,7 +23,7 @@ While it's essential to leave room for spontaneity and unexpected adventures, ha
 
 Vitae sapien pellentesque habitant morbi tristique. Luctus venenatis lectus magna fringilla. Nec ullamcorper sit amet risus nullam eget felis. Tincidunt arcu non sodales neque sodales ut etiam sit amet.
 
-> “ Traveling can expose you to new environments and potential health risks, so it's crucial to take precautions to stay safe and healthy. ”
+> Traveling can expose you to new environments and potential health risks, so it's crucial to take precautions to stay safe and healthy.
 
 ## Conclusion
 

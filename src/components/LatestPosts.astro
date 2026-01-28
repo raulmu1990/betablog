@@ -1,16 +1,14 @@
 ---
+import { getAllPosts, strapiUrl } from '@lib/strapi';
 import PostCard from '@components/PostCard.astro';
-
-import thumbnail from '@assets/thumbnail.jpg';
-import avatar from '@assets/profile.png';
-
-import posts from '../data/posts.json';
 
 interface Props {
     title?: string;
 }
 
 const { title } = Astro.props;
+
+const { posts } = await getAllPosts();
 ---
 
 <section class="py-20 space-y-8">
@@ -18,13 +16,16 @@ const { title } = Astro.props;
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {
             posts.map((post) => (
+
                 <PostCard 
-                    imageSrc={thumbnail.src}
-                    avatar={avatar.src}
-                    title={post.title}
-                    category={post.category}
-                    dateOfPublish={post.dateOfPublish}
-                    author={post.author}
+                    id={post?.documentId}
+                    imageSrc={`${strapiUrl}${post?.featuredImage?.url}`}
+                    avatar={`${strapiUrl}${post?.author?.avatar?.url}`}
+                    title={post?.title}
+                    category={post?.category}
+                    dateOfPublish={post?.publishDate}
+                    author={`${post?.author?.firstName} ${post?.author?.lastName}`}
+                    slug={post?.slug}
                 />
             ))
         }
