@@ -1,6 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Link from '@components/Link.astro';
+
+interface Props {
+    navLinks: any[];
+}
+
+const { navLinks } = Astro.props;
 ---
 
 <button popovertarget="categories-list" class="flex md:inline-flex items-center gap-1 text-body dark:text-body-dark font-medium px-4 py-2 rounded hover:bg-primary/10 hover:text-primary transition-colors duration-100">
@@ -12,11 +18,11 @@ import Link from '@components/Link.astro';
 <el-popover id="categories-list" popover="auto" class="w-full max-w-max fixed top-20 left-[50%] -translate-x-full overflow-visible bg-transparent px-4 transition transition-discrete [--anchor-gap:--spacing(5)] backdrop:bg-transparent open:flex data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">
     <div class="flex-auto w-full max-w-md overflow-hidden rounded-2xl bg-light-background dark:bg-background-dark text-sm/6 outline-1 -outline-offset-1 outline-secondary-100 dark:outline-secondary-100-dark">
         <div class="p-4 grid grid-cols-2 gap-2">
-            <Link href="/categories/lifestyle">Lifestyle</Link>
-            <Link href="/categories/technology">Technology</Link>
-            <Link href="/categories/travel">Travel</Link>
-            <Link href="/categories/food">Food</Link>
-            <Link href="/categories/health">Health</Link>
+            {
+                navLinks.map((link: any) => (
+                    <Link href={link.href} isExternal={link.isExternal}>{link.label}</Link>
+                ))
+            }
         </div>
     </div>
 </el-popover>

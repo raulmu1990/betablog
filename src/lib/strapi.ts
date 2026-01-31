@@ -46,6 +46,15 @@ export async function getStrapiData<T>({
     }
 }
 
+export const getGlobal = async () => {
+    const global = await getStrapiData<any>({
+        endpoint: 'global?populate[logoLightTheme][fields][0]=width&populate[logoLightTheme][fields][1]=height&populate[logoLightTheme][fields][2]=url&populate[logoDarkTheme][fields][0]=width&populate[logoDarkTheme][fields][1]=height&populate[logoDarkTheme][fields][2]=url&populate[favicon][fields][0]=width&populate[favicon][fields][1]=height&populate[favicon][fields][2]=url&populate[header][populate][navLink]=true&populate[header][populate][dropdown][populate][0]=link',
+        wrappedByKey: 'data',
+    });
+
+    return { global }
+}
+
 export const getAllPosts = async () => {
     const posts = await getStrapiData<Post[]>({
         endpoint: 'posts?fields[0]=title&fields[1]=slug&fields[2]=category&fields[3]=publishDate&fields[4]=isFeaturedPost&fields[5]=content&populate[featuredImage][fields][0]=url&populate[author][fields][0]=firstName&populate[author][fields][1]=lastName&populate[author][populate][avatar][fields][0]=url',

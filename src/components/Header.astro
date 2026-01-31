@@ -1,23 +1,37 @@
 ---
-import { Image } from 'astro:assets';
-
-import Logo from '@assets/metablog.svg';
 import Link from '@components/Link.astro';
 import SearchInput from '@components/SearchInput.astro';
 import DarkButtonToggle from '@components/DarkButtonToggle.astro';
 import SidebarMenu from '@components/SidebarMenu.astro';
 import PopoverButton from '@components/PopoverButton.astro';
+import Logotype from '@components/Logotype.astro';
+import type LogoIcon from '@interfaces/logoIcon';
+
+interface Props {
+    logoLightTheme: LogoIcon;
+    logoDarkTheme: LogoIcon;
+    header: any;
+}
+
+const { logoLightTheme, logoDarkTheme, header } = Astro.props;
+const navLinks = header?.navLink || [];
+const dropdownButtons = header?.dropdown || [];
 ---
 
 <header class="fixed z-10 top-0 left-0 w-full px-4 py-2 sm:px-4 sm:py-5 md:px-8 md:py-6 lg:px-12 lg:py-6 bg-light-background/90 dark:bg-background-dark/90 backdrop-blur-sm">
     <nav class="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="/" class="block">
-            <Image src={Logo} alt="Metablog" width="158" height="36" class="fill-body dark:fill-body-dark" />
-        </a>
+        <Logotype logoLightTheme={logoLightTheme} logoDarkTheme={logoDarkTheme} />
         <div class="hidden lg:block space-x-3">
-            <PopoverButton>Categories</PopoverButton>
-            <Link href="/posts">All posts</Link>
-            <Link href="/about">About</Link>
+            {
+                dropdownButtons.map((button: any) => (
+                    <PopoverButton navLinks={button.link}>{button.label}</PopoverButton>
+                ))
+            }
+            {
+                navLinks.map((link: { id: number, label: string, href: string, isExternal: boolean }) => (
+                    <Link href={link.href} isExternal={link.isExternal}>{link.label}</Link>
+                ))
+            }
         </div>
         <div class="hidden lg:flex lg:items-center lg:gap-3">
             <SearchInput />
