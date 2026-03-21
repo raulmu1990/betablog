@@ -1,12 +1,15 @@
 ---
+import type { Category } from '@interfaces/posts';
+
 interface Props {
     id: string;
     imageSrc: string;
     avatar: string;
     title: string;
-    category: string;
-    dateOfPublish: string;
+    category: Category;
+    dateOfPublish: Date;
     author: string;
+    authorSlug: string;
     slug: string;
 }
 
@@ -18,18 +21,19 @@ const {
     category, 
     dateOfPublish, 
     author,
+    authorSlug,
     slug
 } = Astro.props;
 ---
 
 <article class="p-4 space-y-4 rounded-xl border border-secondary-100 dark:border-secondary-100-dark">
-    <a href={`/posts/${slug}`} class="block w-full rounded-md overflow-hidden cursor-pointer">
+    <a href={`/posts/${category.slug}/${slug}`} class="block w-full rounded-md overflow-hidden cursor-pointer">
         <img transition:name={id} src={imageSrc} alt={title} class="rounded-md w-full aspect-3/2 object-cover hover:opacity-50 hover:scale-105 transition-all duration-300" />
     </a>
     <header class="space-y-3">
-        <span class="inline-block text-sm font-medium text-primary px-2 py-1 rounded-md bg-primary/5">
-            {category}
-        </span>
+        <a href={`/posts/${category.slug}`} class="inline-block bg-primary/10 hover:bg-primary/20 border border-primary/80 text-primary text-sm font-medium px-2 py-1 rounded">
+            {category.name}
+        </a>
         <h3 title={title} class="text-lg font-semibold capitalize line-clamp-2">
             {title}
         </h3>
@@ -37,7 +41,7 @@ const {
     <footer class="flex justify-between items-center">
         <div class="flex items-center gap-2">
             <img src={avatar} alt="Author avatar" class="w-9 h-9 rounded-full">
-            <p class="font-medium capitalize text-body/50 dark:text-body-dark/50">{author}</p>
+            <a href={`/author/${authorSlug}`} class="font-medium capitalize text-body/50 dark:text-body-dark/50">{author}</a>
         </div>
         <time class="text-body/50 dark:text-body-dark/50">
             {dateOfPublish}

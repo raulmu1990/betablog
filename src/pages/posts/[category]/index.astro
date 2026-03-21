@@ -1,0 +1,28 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BlogHeader from '@components/BlogHeader.astro';
+import FeaturedPostCategory from '@components/FeaturedPostCategory.astro';
+import LatestPosts from '@components/LatestPosts.astro';
+import { getAllPosts, getAllPostsByCategory } from '@lib/strapi';
+
+const { category } = Astro.params;
+
+let posts = [];
+if (!category || category === 'all') {
+    const { posts: allPosts } = await getAllPosts();
+    posts = allPosts;
+} else {
+    const { posts: categoryPosts } = await getAllPostsByCategory(category);
+    posts = categoryPosts;
+}
+
+if (!posts || posts.length === 0) {
+    return Astro.redirect('/404');
+}
+---
+
+<Layout title="All posts">
+    <BlogHeader categoryTitle={category || 'all'} />
+    <FeaturedPostCategory post={posts[0]} />
+    <LatestPosts posts={posts} />
+</Layout>

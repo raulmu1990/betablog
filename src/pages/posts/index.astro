@@ -1,12 +1,3 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import BlogHeader from '@components/BlogHeader.astro';
-import FeaturedPostCategory from '@components/FeaturedPostCategory.astro';
-import LatestPosts from '@components/LatestPosts.astro';
+return Astro.redirect('/posts/all');
 ---
-
-<Layout title="All posts">
-    <BlogHeader />
-    <FeaturedPostCategory />
-    <LatestPosts />
-</Layout>

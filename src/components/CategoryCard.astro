@@ -1,0 +1,26 @@
+---
+import { strapiUrl } from '@lib/strapi';
+import type { FeaturedCategory } from '@interfaces/homepage';
+
+interface Props {
+    featuredCategory: FeaturedCategory;
+}
+
+const { featuredCategory } = Astro.props;
+const { Title, category } = featuredCategory;
+---
+
+<a href={`/posts/${category?.slug}`} class="relative p-2 border overflow-hidden border-secondary-100 dark:border-secondary-100-dark rounded-3xl hover:[&>div>img]:opacity-50 hover:[&>div>img]:scale-110 hover:[&>div]:bg-primary/10 hover:[&>div]:text-primary hover:[&>div]:border-primary">
+    <div class="absolute z-1 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 inline-block font-medium px-4 py-2 rounded after:absolute after:w-full after:h-full after:rounded after:top-0 after:left-0 after:bg-secondary dark:after:bg-secondary-dark after:-z-1 text-body/75 dark:text-body-dark/50 border border-secondary-100 dark:border-secondary-100-dark transition-colors duration-100 ease-in">
+        {Title}
+    </div>
+    <div class="w-full overflow-hidden rounded-2xl">
+        <img
+            class="w-full aspect-4/3 object-cover transition-transform duration-300 ease-in-out"
+            width={category?.image?.width}
+            height={category?.image?.height}
+            src={`${strapiUrl}${category?.image?.url || ''}`} 
+            alt={category?.image?.alternativeText || category?.name}
+        />
+    </div>
+</a>

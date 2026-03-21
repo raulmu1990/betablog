@@ -1,6 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Link from '@components/Link.astro';
+import type { Link as NavLink } from '@interfaces/global';
+
+interface Props {
+  links: NavLink[];
+}
+
+const { links } = Astro.props;
 ---
 
 <div class="block space-y-2">
@@ -14,10 +21,10 @@ import Link from '@components/Link.astro';
   </label>
 
   <div class="peer-has-checked:flex flex-col gap-2 pl-4 hidden">
-    <Link isExternal={false} href="/categories/lifestyle">Lifestyle</Link>
-    <Link isExternal={false} href="/categories/technology">Technology</Link>
-    <Link isExternal={false} href="/categories/travel">Travel</Link>
-    <Link isExternal={false} href="/categories/food">Food</Link>
-    <Link isExternal={false} href="/categories/health">Health</Link>
+    {
+      links.map((link) => (
+        <Link href={link.href} isExternal={link.isExternalLink}>{link.label}</Link>
+      ))
+    }
   </div>
 </div>

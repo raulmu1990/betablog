@@ -1,5 +1,9 @@
 ---
-import { Icon } from 'astro-icon/components';
+import LinkFooter from '@components/LinkFooter.astro';
+import NewsletterForm from '@components/NewsletterForm.astro';
+import ColumnLinks from '@components/ColumnLinks.astro';
+
+const { footer } = Astro.props;
 ---
 
 <footer class="w-full pt-16 px-4 md:px-6 lg:px-12 xl:px-0 space-y-16 bg-secondary dark:bg-secondary-dark border-t border-secondary-100 dark:border-secondary-100-dark">
@@ -23,44 +27,22 @@ import { Icon } from 'astro-icon/components';
             </ul>
         </div>
         <div class="flex gap-16 justify-start lg:justify-center">
-            <nav class="space-y-4">
-                <p class="font-semibold text-lg">Quick Links</p>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Home</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">About</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Contact</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Services</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Blog</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Contact</a></li>
-                </ul>
-            </nav>
-            <nav class="space-y-4">
-                <p class="font-semibold text-lg">Categories</p>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Lifestyle</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Travel</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Food</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Health</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Fashion</a></li>
-                    <li><a href="#" class="text-body/75 dark:text-body-dark/50 hover:text-primary hover:underline">Technology</a></li>
-                </ul>
-            </nav>
+            <ColumnLinks title="Quick links">
+                {
+                    footer.footerLinks.map((link: any) => (
+                        <LinkFooter href={link.href} label={link.label} isExternal={link.isExternalLink} />
+                    ))
+                }
+            </ColumnLinks>
+            <ColumnLinks title="Categories">
+                {
+                    footer.categoriesLinks.map((link: any) => (
+                        <LinkFooter href={link.href} label={link.label} />
+                    ))
+                }
+            </ColumnLinks>
         </div>
-        <form class="order-first lg:order-last p-8 bg-white dark:bg-secondary-100-dark rounded-xl flex flex-col gap-8" action="/" method="post">
-            <p class="text-center text-body/50 dark:text-body-dark/50">
-                <strong class="font-semibold text-xl text-body dark:text-body-dark">Weekly Newsletter</strong><br>
-                Get blog articles and offers via email
-            </p>
-            <label class="px-4 py-3 rounded-md flex items-center border border-secondary-100 dark:border-body-dark/50 has-focus:border-primary">
-                <input required class="flex-1 text-body dark:text-body-dark focus:border-none focus:outline-none" type="email" name="email" placeholder="Your email">
-                <span class="w-fit">
-                    <Icon name="envelope" class="size-5 text-body dark:text-body-dark" />
-                </span>
-            </label>
-            <button class="bg-primary hover:bg-primary-hover text-white font-semibold py-3 rounded-md cursor-pointer" type="submit">
-                Subscribe
-            </button>
-        </form>
+        <NewsletterForm />
     </div>
     <div class="max-w-7xl mx-auto py-8 flex flex-col gap-3 md:flex-row items-center justify-start sm:justify-between border-t-2 border-secondary-100 dark:border-secondary-100-dark">
         <div class="space-y-1">

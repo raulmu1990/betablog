@@ -1,16 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import heroImg from '@assets/feature-post-img.jpg'
-
 import FeaturedCard from '@components/FeaturedCard.astro';
+
+const { featuredPost } = Astro.props;
 ---
 
 <section class="w-full relative">
-    <Image 
-        class="w-full h-[50vh] lg:h-[65vh] object-cover rounded-xl" 
-        src={heroImg} 
-        alt="Hero image" 
-        layout="constrained" 
-    />
-    <FeaturedCard />
+    <FeaturedCard featuredPost={featuredPost} />
 </section>

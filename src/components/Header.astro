@@ -5,12 +5,12 @@ import DarkButtonToggle from '@components/DarkButtonToggle.astro';
 import SidebarMenu from '@components/SidebarMenu.astro';
 import PopoverButton from '@components/PopoverButton.astro';
 import Logotype from '@components/Logotype.astro';
-import type LogoIcon from '@interfaces/logoIcon';
+import type { Favicon, Link as NavLink, Header as HeaderData } from '@interfaces/global';;
 
 interface Props {
-    logoLightTheme: LogoIcon;
-    logoDarkTheme: LogoIcon;
-    header: any;
+    logoLightTheme: Favicon;
+    logoDarkTheme: Favicon;
+    header: HeaderData;
 }
 
 const { logoLightTheme, logoDarkTheme, header } = Astro.props;
@@ -23,13 +23,13 @@ const dropdownButtons = header?.dropdown || [];
         <Logotype logoLightTheme={logoLightTheme} logoDarkTheme={logoDarkTheme} />
         <div class="hidden lg:block space-x-3">
             {
-                dropdownButtons.map((button: any) => (
+                dropdownButtons.map((button) => (
                     <PopoverButton navLinks={button.link}>{button.label}</PopoverButton>
                 ))
             }
             {
-                navLinks.map((link: { id: number, label: string, href: string, isExternal: boolean }) => (
-                    <Link href={link.href} isExternal={link.isExternal}>{link.label}</Link>
+                navLinks.map((link: NavLink) => (
+                    <Link href={link.href} isExternal={link.isExternalLink}>{link.label}</Link>
                 ))
             }
         </div>
@@ -38,6 +38,6 @@ const dropdownButtons = header?.dropdown || [];
             <DarkButtonToggle />
         </div>
 
-        <SidebarMenu />
+        <SidebarMenu links={navLinks} dropdown={dropdownButtons} />
     </nav>
 </header>

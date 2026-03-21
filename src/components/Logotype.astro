@@ -1,10 +1,10 @@
 ---
-import type LogoIcon from '@interfaces/logoIcon';
+import type { Favicon } from '@interfaces/global';
 import { strapiUrl } from '@lib/strapi';
 
 interface Props {
-    logoLightTheme: LogoIcon;
-    logoDarkTheme: LogoIcon;
+    logoLightTheme: Favicon;
+    logoDarkTheme: Favicon;
 }
 
 const { logoLightTheme, logoDarkTheme } = Astro.props;

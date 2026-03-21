@@ -1,0 +1,69 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<form id="newsletter-form" class="order-first lg:order-last p-8 bg-white dark:bg-secondary-100-dark rounded-xl flex flex-col gap-8" method="post">
+    <p class="text-center text-body/50 dark:text-body-dark/50">
+        <strong class="font-semibold text-xl text-body dark:text-body-dark">Weekly Newsletter</strong><br>
+        Get blog articles and offers via email
+    </p>
+    <label class="px-4 py-3 rounded-md flex items-center border border-secondary-100 dark:border-body-dark/50 has-focus:border-primary">
+        <input required class="flex-1 text-body dark:text-body-dark focus:border-none focus:outline-none" type="email" name="email" placeholder="Your email">
+        <span class="w-fit">
+            <Icon name="envelope" class="size-5 text-body dark:text-body-dark" />
+        </span>
+    </label>
+    <div class="flex gap-2 items-center">
+        <input class="checked:bg-primary checked:border-primary" required name="terms" type="checkbox" id="terms" value="true">
+        <label for="terms" class="text-body dark:text-body-dark">I agree to the terms and conditions</label>
+    </div>
+    <div id="validation-errors" class="text-red-500 hidden"></div>
+    <button id="newsletter-submit-btn" class="bg-primary hover:bg-primary-hover text-white font-semibold py-3 rounded-md cursor-pointer inline-flex items-center justify-center gap-2" type="submit">
+        <Icon name="spinner" class="hidden fill-white size-5 animate-spin" id="spinner" />
+        Subscribe
+    </button>
+</form>
+
+<script>
+    import { actions, isInputError } from 'astro:actions';
+
+    const form = document.querySelector('#newsletter-form');
+    const spinner = document.querySelector('#spinner');
+    const validationErrors = document.querySelector('#validation-errors');
+    const submitBtn = document.querySelector('#newsletter-submit-btn');
+    
+    if (form instanceof HTMLFormElement) {
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            spinner?.classList.remove('hidden');
+
+            const formData = new FormData(form);
+            const { data, error } = await actions.subscribe(formData);
+    
+            if (error && isInputError(error) && validationErrors instanceof HTMLDivElement) {
+                validationErrors.classList.remove('hidden');
+                validationErrors.innerHTML = error.fields?.email?.join('<br>') || '';
+                validationErrors.innerHTML += error.fields?.terms?.join('<br>') || '';
+            }
+
+            if (!error && !data?.success && validationErrors instanceof HTMLDivElement) {
+                validationErrors.classList.remove('hidden');
+                validationErrors.innerHTML = data?.error || 'Something went wrong';
+            }
+
+            if (!error && data?.success && submitBtn instanceof HTMLButtonElement && validationErrors instanceof HTMLDivElement) {
+                validationErrors.classList.add('hidden');
+
+                submitBtn.textContent = 'You have been subscribed';
+                submitBtn.style.backgroundColor = '#016630';
+                submitBtn.disabled = true;
+                form.reset();
+            }
+
+            spinner?.classList.add('hidden');
+        })
+    }
+
+</script>

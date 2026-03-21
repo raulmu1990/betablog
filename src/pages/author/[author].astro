@@ -1,0 +1,45 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { strapiUrl,getAuthor, getAllPostsByAuthor } from '@lib/strapi';
+import { Icon } from 'astro-icon/components';
+import LatestPosts from '@components/LatestPosts.astro';
+
+const { author } = Astro.params;
+
+const { author: authorData } = await getAuthor(author || '');
+
+if (!authorData) {
+    return Astro.redirect('/404');
+}
+
+const { posts } = await getAllPostsByAuthor(authorData?.slug || '');
+---
+
+<Layout title='Author page'>
+    <section class="mt-12 p-6 md:p-8 lg:p-12 rounded-lg md:rounded-xl bg-primary bg-blend-luminosity bg-[url('../assets/what-the-hex.png')] dark:bg-[url('../assets/what-the-hex-dark.png')] bg-repeat">
+        <div class="w-full md:w-[75%] lg:w-[50%] space-y-4 md:space-y-6 mx-auto">
+            <div class="flex justify-center items-center gap-4">
+                <img width="64" height="64" class="rounded-full" src={`${strapiUrl}${authorData?.avatar?.url}`} alt={authorData?.firstName} />
+                <div class="space-y-2">
+                    <h1 class="text-2xl capitalize font-bold leading-tight text-body dark:text-body-dark">{authorData?.firstName} {authorData?.lastName}</h1>
+                    <p class="text-sm capitalize text-body/75 dark:text-body-dark/50">{authorData?.role}</p>
+                </div>
+            </div>
+
+            <p class="text-lg leading-relaxed text-center text-body/75 dark:text-body-dark/50">{authorData?.biography}</p>
+
+            <address class="flex gap-2 items-center justify-center">
+                <a href={authorData?.facebookLink} target="_blank" class="p-2 rounded-md text-white bg-primary hover:bg-primary-hover transition-colors duration-300 ease-in">
+                    <Icon name="facebook" size={20} />
+                </a>
+                <a href={authorData?.instagramLink} target="_blank" class="p-2 rounded-md text-white bg-primary hover:bg-primary-hover transition-colors duration-300 ease-in">
+                    <Icon name="instagram" size={20} />
+                </a>
+                <a href={authorData?.youtubeLink} target="_blank" class="p-2 rounded-md text-white bg-primary hover:bg-primary-hover transition-colors duration-300 ease-in">
+                    <Icon name="youtube" size={20} />
+                </a>
+            </address>
+        </div>
+    </section>
+    <LatestPosts posts={posts} />
+</Layout>

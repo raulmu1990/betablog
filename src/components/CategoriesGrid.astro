@@ -1,0 +1,22 @@
+---
+import type { FeaturedCategory } from '@interfaces/homepage';
+import CategoryCard from '@components/CategoryCard.astro';
+
+interface Props {
+    title: string;
+    categories: FeaturedCategory[];
+}
+
+const { title, categories } = Astro.props;
+---
+
+<section class="py-20 space-y-8">
+    <h2 class="text-2xl font-bold capitalize">{title}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {
+            categories?.map((category) => (
+                <CategoryCard featuredCategory={category} />
+            ))
+        }
+    </div>
+</section>

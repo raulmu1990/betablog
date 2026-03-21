@@ -5,6 +5,14 @@ import SearchInput from "./SearchInput.astro";
 import DarkButtonToggle from "./DarkButtonToggle.astro";
 import Link from './Link.astro';
 import DropdownButton from './DropdownButton.astro';
+import type { Link as NavLink } from '@interfaces/global';
+
+interface Props {
+    links: NavLink[];
+    dropdown: any[];
+}
+
+const { links, dropdown } = Astro.props;
 ---
 
 <div class="block lg:hidden">
@@ -28,9 +36,17 @@ import DropdownButton from './DropdownButton.astro';
             </div>
             <div class="space-y-4">
                 <hr class="border border-body/25 dark:border-body-dark/25" />
-                <DropdownButton>Categories</DropdownButton>
+                {
+                    dropdown.map((button: any) => (
+                        <DropdownButton links={button.link}>{button.label}</DropdownButton>
+                    ))
+                }
                 <hr class="border border-body/25 dark:border-body-dark/25" />
-                <Link href="/posts" isExternal={false}>All posts</Link>
+                {
+                    links.map((link: NavLink) => (
+                        <Link href={link.href} isExternal={link.isExternalLink}>{link.label}</Link>
+                    ))
+                }
                 <hr class="border border-body/25 dark:border-body-dark/25" />
             </div>
         </div>

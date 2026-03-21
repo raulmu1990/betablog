@@ -1,15 +1,29 @@
 ---
     interface Props {
         href: string;
-        isExternal: boolean;
+        classes?: string;
+        isExternal?: boolean;
+        isButton?: boolean;
     }
 
-    const { href, isExternal } = Astro.props;
+    const { href, classes= '', isExternal = false, isButton = false } = Astro.props;
+
+    const linkClasses = isButton 
+        ? 'text-body/75 dark:text-body-dark/50 border border-secondary-100 dark:border-secondary-100-dark hover:border-primary' 
+        : 'text-body dark:text-body-dark';
 ---
 
 <a 
     href={href} 
     target={isExternal ? '_blank' : '_self'}
-    class="inline-block text-body dark:text-body-dark font-medium px-4 py-2 rounded hover:bg-primary/10 hover:text-primary transition-colors duration-100">
+    class={`
+        ${classes}
+        inline-block 
+        font-medium px-4 py-2 rounded 
+        hover:bg-primary/10 hover:text-primary 
+        transition-colors duration-100
+        ${linkClasses}
+    `}
+    >
     <slot />
 </a>

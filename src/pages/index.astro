@@ -3,9 +3,23 @@ import Layout from '@layouts/Layout.astro';
 
 import Hero from '@components/Hero.astro';
 import LatestPosts from '@components/LatestPosts.astro';
+import CategoriesGrid from '@components/CategoriesGrid.astro';
+
+import { getHomepage, getAllPosts } from '@lib/strapi';
+
+const { homepage, error } = await getHomepage();
+const { posts } = await getAllPosts();
 ---
 
-<Layout title="Personal blog with astro">
-	<Hero />
-	<LatestPosts title='Latest posts'/>
+<Layout title={homepage?.title} description={homepage?.description}>
+	<Hero featuredPost={homepage?.featuredPost.post} />
+	<LatestPosts title='Latest posts' allPostsLink={true} posts={posts}/>
+	<CategoriesGrid title='Categories' categories={homepage?.featuredCategories || []} />
+	
+	{
+		error && 
+			(<div class="fixed bottom-6 left-1/2 -translate-x-1/2 p-6 border border-red-700 bg-red-700/50 text-red-700 rounded text-lg font-medium">
+				{error}
+			</div>)
+	}
 </Layout>
