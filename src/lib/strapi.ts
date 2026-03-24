@@ -1,4 +1,4 @@
-import { STRAPI_CMS_URL } from 'astro:env/client';
+import { STRAPI_CMS_URL, STRAPI_MEDIA_URL } from 'astro:env/client';
 import type { Global } from '@interfaces/global';
 import type { Homepage } from '@interfaces/homepage';
 import type { Posts } from '@interfaces/posts';
@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const strapiUrl = STRAPI_CMS_URL;
+export const strapiMediaUrl = STRAPI_MEDIA_URL;
 
 export async function getStrapiData<T>({ 
     endpoint, 

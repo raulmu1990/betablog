@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { strapiUrl,getAuthor, getAllPostsByAuthor } from '@lib/strapi';
+import { strapiMediaUrl, getAuthor, getAllPostsByAuthor } from '@lib/strapi';
 import { Icon } from 'astro-icon/components';
 import LatestPosts from '@components/LatestPosts.astro';
 
@@ -19,7 +19,7 @@ const { posts } = await getAllPostsByAuthor(authorData?.slug || '');
     <section class="mt-12 p-6 md:p-8 lg:p-12 rounded-lg md:rounded-xl bg-primary bg-blend-luminosity bg-[url('../assets/what-the-hex.png')] dark:bg-[url('../assets/what-the-hex-dark.png')] bg-repeat">
         <div class="w-full md:w-[75%] lg:w-[50%] space-y-4 md:space-y-6 mx-auto">
             <div class="flex justify-center items-center gap-4">
-                <img width="64" height="64" class="rounded-full" src={`${strapiUrl}${authorData?.avatar?.url}`} alt={authorData?.firstName} />
+                <img width="64" height="64" class="rounded-full" src={`${strapiMediaUrl}${authorData?.avatar?.url}`} alt={authorData?.firstName} />
                 <div class="space-y-2">
                     <h1 class="text-2xl capitalize font-bold leading-tight text-body dark:text-body-dark">{authorData?.firstName} {authorData?.lastName}</h1>
                     <p class="text-sm capitalize text-body/75 dark:text-body-dark/50">{authorData?.role}</p>

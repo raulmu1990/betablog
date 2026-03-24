@@ -1,5 +1,5 @@
 ---
-import { strapiUrl } from '@lib/strapi';
+import { strapiMediaUrl } from '@lib/strapi';
 import PostCard from '@components/PostCard.astro';
 import Link from '@components/Link.astro';
 import type { Post } from '@interfaces/posts';
@@ -21,8 +21,8 @@ const { posts, title, allPostsLink = false } = Astro.props;
 
                 <PostCard 
                     id={post?.documentId}
-                    imageSrc={`${strapiUrl}${post?.featuredImage?.formats?.small?.url || post?.featuredImage?.url}`}
-                    avatar={`${strapiUrl}${post?.author?.avatar?.url}`}
+                    imageSrc={`${strapiMediaUrl}${post?.featuredImage?.formats?.small?.url || post?.featuredImage?.url}`}
+                    avatar={`${strapiMediaUrl}${post?.author?.avatar?.url}`}
                     title={post?.title}
                     category={post?.category}
                     dateOfPublish={post?.publishDate}

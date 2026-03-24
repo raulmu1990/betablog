@@ -17,7 +17,8 @@ export default defineConfig({
 
   env: {
     schema: {
-      STRAPI_CMS_URL: envField.string({ context: 'client', access: 'public' })
+      STRAPI_CMS_URL: envField.string({ context: 'client', access: 'public' }),
+      STRAPI_MEDIA_URL: envField.string({ context: 'client', access: 'public' })
     }
   },
 

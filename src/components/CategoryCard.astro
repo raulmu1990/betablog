@@ -1,5 +1,5 @@
 ---
-import { strapiUrl } from '@lib/strapi';
+import { strapiMediaUrl } from '@lib/strapi';
 import type { FeaturedCategory } from '@interfaces/homepage';
 
 interface Props {
@@ -19,7 +19,7 @@ const { Title, category } = featuredCategory;
             class="w-full aspect-4/3 object-cover transition-transform duration-300 ease-in-out"
             width={category?.image?.width}
             height={category?.image?.height}
-            src={`${strapiUrl}${category?.image?.url || ''}`} 
+            src={`${strapiMediaUrl}${category?.image?.url || ''}`} 
             alt={category?.image?.alternativeText || category?.name}
         />
     </div>
