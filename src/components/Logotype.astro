@@ -1,6 +1,5 @@
 ---
 import type { Favicon } from '@interfaces/global';
-import { strapiUrl } from '@lib/strapi';
 
 interface Props {
     logoLightTheme: Favicon;
@@ -10,6 +9,6 @@ interface Props {
 const { logoLightTheme, logoDarkTheme } = Astro.props;
 ---
 <a href="/" class="block">
-    <img class="block dark:hidden" src={`${strapiUrl}${logoLightTheme.url}`} alt="Betablog logo" width={logoLightTheme.width} height={logoLightTheme.height} loading="eager" />
-    <img class="hidden dark:block" src={`${strapiUrl}${logoDarkTheme.url}`} alt="Betablog logo" width={logoDarkTheme.width} height={logoDarkTheme.height} loading="eager" />
+    <img class="block dark:hidden" src={logoLightTheme.url} alt="Betablog logo" width={logoLightTheme.width} height={logoLightTheme.height} loading="eager" />
+    <img class="hidden dark:block" src={logoDarkTheme.url} alt="Betablog logo" width={logoDarkTheme.width} height={logoDarkTheme.height} loading="eager" />
 </a>
